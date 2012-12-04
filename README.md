@@ -90,6 +90,8 @@ Other than that, I've:
 
 1. I've adjusted the locale to be en_US
 2. I don't mess with the time-zone; you computer will keep the time it's currently on
+3. I hide the scrollbars; I just don't like them
+4. I don't install as much stuff with brew; just what I consder the bare bones tools
 
 Really, you should just clone Mathias' dotfiles and make them your own.
 
