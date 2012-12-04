@@ -91,7 +91,7 @@ Other than that, I've:
 1. I've adjusted the locale to be en_US
 2. I don't mess with the time-zone; you computer will keep the time it's currently on
 
-Really, you should just clone Mathias' dotfile and make them your own.
+Really, you should just clone Mathias' dotfiles and make them your own.
 
 ## Feedback
 
