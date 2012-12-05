@@ -6,9 +6,9 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # Git credentials
 # Not in the repository, to prevent people from accidentally committing under my name
-GIT_AUTHOR_NAME="Esteban Araya"
+GIT_AUTHOR_NAME="Shaun Moon"
 GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
 git config --global user.name "$GIT_AUTHOR_NAME"
-GIT_AUTHOR_EMAIL="esteban.araya@gmail.com"
+GIT_AUTHOR_EMAIL="srmoon@gmail.com"
 GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
 git config --global user.email "$GIT_AUTHOR_EMAIL"
