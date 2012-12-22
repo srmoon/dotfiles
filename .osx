@@ -91,6 +91,17 @@ systemsetup -setcomputersleep Off > /dev/null
 defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
 
 ###############################################################################
+# Screen Capture Settings                                                     #
+###############################################################################
+
+# Set a folder for saving screenshots (in this case – desktop)
+defaults write com.apple.screencapture location -string "$HOME/Documents/ScreenCaps"
+# Set screencapture format (either BMP, GIF, JPG, PDF or TIFF)
+defaults write com.apple.screencapture type -string "png"
+# Screencaps without window shadows?
+defaults write com.apple.screencapture disable-shadow -bool true
+
+###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ###############################################################################
 
@@ -99,11 +110,14 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool
 defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
-# Trackpad: map bottom right corner to right-click
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
+# Trackpad: right-click enabled
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
 defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
+
+# Disable right-click mapped to bottom right corner
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 0
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 0
+
 
 # Trackpad: swipe between pages with three fingers
 defaults write NSGlobalDomain AppleEnableSwipeNavigateWithScrolls -bool true
@@ -292,26 +306,26 @@ defaults write com.apple.dock show-process-indicators -bool true
 # the Dock to launch apps.
 #defaults write com.apple.dock persistent-apps -array
 
-# Don’t animate opening applications from the Dock
+# Animate opening applications from the Dock
 defaults write com.apple.dock launchanim -bool false
 
-# Speed up Mission Control animations
-defaults write com.apple.dock expose-animation-duration -float 0.3
+# Speed of Mission Control animations
+defaults write com.apple.dock expose-animation-duration -float 0.4
 
-# Don’t group windows by application in Mission Control
+# Group windows by application in Mission Control
 # (i.e. use the old Exposé behavior instead)
 defaults write com.apple.dock expose-group-by-app -bool false
 
 # Don’t show Dashboard as a Space
 defaults write com.apple.dock dashboard-in-overlay -bool true
 
-# Remove the auto-hiding Dock delay
-defaults write com.apple.Dock autohide-delay -float 0
-# Remove the animation when hiding/showing the Dock
-defaults write com.apple.dock autohide-time-modifier -float 0
+# Delay of auto-hiding Dock
+defaults write com.apple.Dock autohide-delay -float 0.05
+# Animation when hiding/the Dock
+defaults write com.apple.dock autohide-time-modifier -float 0.35
 
 # Enable the 2D Dock
-#defaults write com.apple.dock no-glass -bool true
+defaults write com.apple.dock no-glass -bool true
 
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
@@ -331,15 +345,24 @@ ln -s /Applications/Xcode.app/Contents/Applications/iPhone\ Simulator.app /Appli
 #defaults write com.apple.dock persistent-others -array-add '{tile-data={}; tile-type="spacer-tile";}'
 
 # Hot corners
-# Top left screen corner → Mission Control
-defaults write com.apple.dock wvous-tl-corner -int 2
+# -int 0 → this either does nothing or resets
+# -int 2 → Mission Control
+# -int 3 → App Expose
+# -int 4 → Show Desktop
+# -int 5 → Start Screen Saver
+# Top left screen corner
+defaults write com.apple.dock wvous-tl-corner -int 0
 defaults write com.apple.dock wvous-tl-modifier -int 0
-# Top right screen corner → Desktop
-defaults write com.apple.dock wvous-tr-corner -int 4
+# Top right screen corner
+defaults write com.apple.dock wvous-tr-corner -int 0
 defaults write com.apple.dock wvous-tr-modifier -int 0
-# Bottom left screen corner → Start screen saver
-defaults write com.apple.dock wvous-bl-corner -int 5
+# Bottom left screen corner
+defaults write com.apple.dock wvous-bl-corner -int 2
 defaults write com.apple.dock wvous-bl-modifier -int 0
+# Bottom right screen corner
+defaults write com.apple.dock wvous-br-corner -int 4
+defaults write com.apple.dock wvous-br-modifier -int 0
+
 
 ###############################################################################
 # Safari & WebKit                                                             #
